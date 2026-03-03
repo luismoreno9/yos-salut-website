@@ -483,7 +483,8 @@
 
 @media (max-width: 480px) {
   .hero__title {
-    font-size: clamp(1.8rem, 5.5vw, 2.5rem);
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    line-height: 1.2;
   }
 }
 
@@ -596,15 +597,16 @@
 @media (max-width: 768px) {
   .values-grid {
     grid-template-columns: 1fr;
-    gap: var(--space-sm);
+    gap: var(--space-xs);
   }
 
   .value-card {
-    padding: var(--space-xl) var(--space-lg);
+    padding: var(--space-lg) var(--space-md);
   }
 
   .value-card__icon {
-    margin-top: var(--space-sm);
+    margin-top: var(--space-xs);
+    margin-bottom: var(--space-sm);
   }
 }
 
@@ -1865,12 +1867,16 @@
 
 @media (max-width: 640px) {
   .services-compare__table {
-    font-size: var(--fs-xs);
+    font-size: 0.75rem;
   }
 
   .services-compare__table th,
   .services-compare__table td {
-    padding: var(--space-sm) var(--space-sm);
+    padding: var(--space-xs) var(--space-xs);
+  }
+
+  .services-compare__table th {
+    font-size: 0.7rem;
   }
 }
 
@@ -1938,7 +1944,7 @@
 
   /* Push content up so mobile bar doesn't cover footer */
   body {
-    padding-bottom: 80px;
+    padding-bottom: 90px;
   }
 }
 
