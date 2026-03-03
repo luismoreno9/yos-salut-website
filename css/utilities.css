@@ -1,0 +1,353 @@
+/* ==========================================================================
+   UTILITIES — Helper classes reutilizables
+   ========================================================================== */
+
+/* Text alignment */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+/* Text colors */
+.text-primary { color: var(--color-primary); }
+.text-accent { color: var(--color-accent); }
+.text-light { color: var(--color-text-light); }
+
+/* Background colors */
+.bg-primary { background-color: var(--color-primary); }
+.bg-accent { background-color: var(--color-accent); }
+.bg-surface { background-color: var(--color-surface); }
+
+/* Margins utilities */
+.mb-0 { margin-bottom: 0; }
+.mb-sm { margin-bottom: var(--space-sm); }
+.mb-md { margin-bottom: var(--space-md); }
+.mb-lg { margin-bottom: var(--space-lg); }
+.mb-xl { margin-bottom: var(--space-xl); }
+
+/* Borders */
+.border { border: 1px solid var(--color-border); }
+.border-radius { border-radius: var(--radius-md); }
+
+/* Shadows */
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+
+/* Fade-in animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.6s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================================================================
+   3D ANIMATIONS & MOVING TEXT
+   ================================================================ */
+
+/* 3D Floating objects */
+.floating-3d {
+  position: absolute;
+  transform-style: preserve-3d;
+  animation: float3d 8s ease-in-out infinite;
+}
+
+.floating-3d--slow {
+  animation-duration: 12s;
+}
+
+.floating-3d--fast {
+  animation-duration: 6s;
+}
+
+@keyframes float3d {
+  0%, 100% {
+    transform: translateY(0) rotateX(0deg) rotateY(0deg);
+  }
+  25% {
+    transform: translateY(-20px) rotateX(5deg) rotateY(10deg);
+  }
+  50% {
+    transform: translateY(-10px) rotateX(-5deg) rotateY(-10deg);
+  }
+  75% {
+    transform: translateY(-30px) rotateX(10deg) rotateY(5deg);
+  }
+}
+
+/* 3D rotating objects — gentle float + pulse */
+.rotating-3d {
+  animation: iconFloat 4s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-6px) scale(1.08);
+  }
+}
+
+/* Moving text effects */
+.text-slide {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.text-slide span {
+  display: inline-block;
+  animation: slideText 8s linear infinite;
+}
+
+@keyframes slideText {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Typewriter effect */
+.typewriter {
+  overflow: hidden;
+  border-right: 3px solid var(--color-primary);
+  white-space: nowrap;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: var(--color-primary) }
+}
+
+/* Glowing text */
+.text-glow {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px var(--color-primary-light), 0 0 20px var(--color-primary-light);
+  }
+  to {
+    text-shadow: 0 0 20px var(--color-primary), 0 0 30px var(--color-primary), 0 0 40px var(--color-primary);
+  }
+}
+
+/* Wave text animation */
+.wave-text span {
+  display: inline-block;
+  animation: wave 1.5s ease-in-out infinite;
+}
+
+.wave-text span:nth-child(1) { animation-delay: 0s; }
+.wave-text span:nth-child(2) { animation-delay: 0.1s; }
+.wave-text span:nth-child(3) { animation-delay: 0.2s; }
+.wave-text span:nth-child(4) { animation-delay: 0.3s; }
+.wave-text span:nth-child(5) { animation-delay: 0.4s; }
+.wave-text span:nth-child(6) { animation-delay: 0.5s; }
+.wave-text span:nth-child(7) { animation-delay: 0.6s; }
+.wave-text span:nth-child(8) { animation-delay: 0.7s; }
+.wave-text span:nth-child(9) { animation-delay: 0.8s; }
+.wave-text span:nth-child(10) { animation-delay: 0.9s; }
+
+@keyframes wave {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* 3D Card flip */
+.card-3d {
+  perspective: 1000px;
+}
+
+.card-3d-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.card-3d:hover .card-3d-inner {
+  transform: rotateY(180deg);
+}
+
+.card-3d-front, .card-3d-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: var(--radius-lg);
+}
+
+.card-3d-back {
+  transform: rotateY(180deg);
+}
+
+/* Parallax effect */
+.parallax-slow {
+  transform: translateZ(-1px) scale(2);
+}
+
+.parallax-medium {
+  transform: translateZ(-0.5px) scale(1.5);
+}
+
+/* Floating particles */
+.particle {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.particle--small {
+  width: 4px;
+  height: 4px;
+  background: var(--color-primary-light);
+  border-radius: 50%;
+  animation: particleFloat 15s linear infinite;
+}
+
+.particle--medium {
+  width: 8px;
+  height: 8px;
+  background: var(--color-accent);
+  border-radius: 50%;
+  animation: particleFloat 20s linear infinite;
+}
+
+.particle--large {
+  width: 12px;
+  height: 12px;
+  background: var(--color-warm);
+  border-radius: 50%;
+  animation: particleFloat 25s linear infinite;
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* 3D Button hover */
+.btn-3d {
+  transform-style: preserve-3d;
+  transition: all 0.3s ease;
+}
+
+.btn-3d:hover {
+  transform: translateY(-4px) rotateX(-10deg);
+  box-shadow: 0 8px 25px rgba(91,155,213,.4);
+}
+
+.btn-3d:active {
+  transform: translateY(-2px) rotateX(-5deg);
+}
+
+/* Morphing shapes */
+.morph-shape {
+  animation: morph 8s ease-in-out infinite;
+}
+
+@keyframes morph {
+  0%, 100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  50% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+}
+
+/* Hover helpers used across sections */
+.hover-lift-3d {
+  transform-style: preserve-3d;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.hover-lift-3d:hover {
+  transform: translateY(-8px) rotateX(4deg) rotateY(-4deg);
+  box-shadow: var(--shadow-xl);
+}
+
+.hover-tilt {
+  will-change: transform;
+  transform-style: preserve-3d;
+  transition: transform 180ms ease-out, box-shadow var(--transition-base);
+}
+
+.reveal-item {
+  opacity: 0;
+  transform: translateY(24px) scale(0.985);
+  transition: opacity 520ms ease, transform 620ms cubic-bezier(.2,.8,.2,1);
+}
+
+.reveal-item--visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Extra animated headline helper */
+.text-float {
+  display: inline-block;
+  animation: textFloat 3.4s ease-in-out infinite;
+}
+
+@keyframes textFloat {
+  0%,
+  100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Accessibility: reduce motion when user requests it */
+@media (prefers-reduced-motion: reduce) {
+  .floating-3d,
+  .rotating-3d,
+  .text-slide span,
+  .typewriter,
+  .text-glow,
+  .wave-text span,
+  .particle,
+  .morph-shape,
+  .text-float {
+    animation: none !important;
+  }
+
+  .hover-lift-3d:hover,
+  .btn-3d:hover,
+  .hover-tilt,
+  .hover-tilt:hover {
+    transform: none !important;
+  }
+}
