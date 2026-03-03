@@ -481,6 +481,12 @@
   color: #fff;
 }
 
+@media (max-width: 480px) {
+  .hero__title {
+    font-size: clamp(1.8rem, 5.5vw, 2.5rem);
+  }
+}
+
 .hero__subtitle {
   font-size: var(--fs-lg);
   color: rgba(255,255,255,.85);
@@ -590,7 +596,15 @@
 @media (max-width: 768px) {
   .values-grid {
     grid-template-columns: 1fr;
-    gap: var(--space-md);
+    gap: var(--space-sm);
+  }
+
+  .value-card {
+    padding: var(--space-xl) var(--space-lg);
+  }
+
+  .value-card__icon {
+    margin-top: var(--space-sm);
   }
 }
 
@@ -1849,6 +1863,17 @@
   color: var(--color-text);
 }
 
+@media (max-width: 640px) {
+  .services-compare__table {
+    font-size: var(--fs-xs);
+  }
+
+  .services-compare__table th,
+  .services-compare__table td {
+    padding: var(--space-sm) var(--space-sm);
+  }
+}
+
 /* ================================================================
    MOBILE STICKY BAR
    ================================================================ */
@@ -1913,7 +1938,7 @@
 
   /* Push content up so mobile bar doesn't cover footer */
   body {
-    padding-bottom: 72px;
+    padding-bottom: 80px;
   }
 }
 
