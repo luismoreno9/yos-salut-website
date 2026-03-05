@@ -26,6 +26,7 @@
 
   /* Tipografía */
   --ff-body:    'Inter', system-ui, -apple-system, sans-serif;
+  --ff-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
   --fw-regular: 400;
   --fw-medium:  500;
   --fw-semibold:600;
@@ -132,6 +133,7 @@ ul, ol {
 }
 
 h1, h2, h3, h4, h5, h6 {
+  font-family: var(--ff-heading);
   line-height: 1.25;
   font-weight: var(--fw-bold);
   color: var(--color-text);

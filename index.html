@@ -30,16 +30,16 @@
   <!-- Favicon placeholder -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
 
-  <!-- Fuentes: Inter (preconnect + swap) -->
+  <!-- Fuentes: Playfair Display (headlines) + Inter (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap">
 
   <!-- Estilos -->
-  <link rel="stylesheet" href="css/base.css?v=2">
-  <link rel="stylesheet" href="css/layout.css?v=2">
-  <link rel="stylesheet" href="css/components.css?v=2">
-  <link rel="stylesheet" href="css/utilities.css?v=2">
+  <link rel="stylesheet" href="css/base.css?v=3">
+  <link rel="stylesheet" href="css/layout.css?v=3">
+  <link rel="stylesheet" href="css/components.css?v=3">
+  <link rel="stylesheet" href="css/utilities.css?v=3">
 
   <!-- Schema.org: LocalBusiness -->
   <script type="application/ld+json">
@@ -58,7 +58,10 @@
     },
     "areaServed": [
       { "@type": "City", "name": "Vilanova del Camí" },
-      { "@type": "City", "name": "Igualada" }
+      { "@type": "City", "name": "Igualada" },
+      { "@type": "City", "name": "Capellades" },
+      { "@type": "City", "name": "Santa Margarida de Montbui" },
+      { "@type": "City", "name": "La Pobla de Claramunt" }
     ],
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
@@ -138,21 +141,17 @@
       <a href="#inicio" class="header__logo" aria-label="YOS SALUT — Inicio">YOS <span>SALUT</span></a>
       <nav class="nav" id="main-nav" aria-label="Menú principal">
         <ul class="nav__list">
-          <li><a href="#inicio" class="nav__link">Inicio</a></li>
           <li><a href="#servicios" class="nav__link">Servicios</a></li>
-          <li><a href="#blog" class="nav__link">Blog</a></li>
-          <li><a href="#zonas" class="nav__link">Zonas de dolor</a></li>
+          <li><a href="#precios" class="nav__link">Precios</a></li>
+          <li><a href="#sobre-mi" class="nav__link">Sobre mí</a></li>
           <li><a href="#horario" class="nav__link">Horario</a></li>
-          <li><a href="#faq" class="nav__link">FAQ</a></li>
-          <li><a href="#contacto" class="nav__link">Contacto</a></li>
         </ul>
         <div class="nav__mobile-actions">
           <a href="https://wa.me/34660385358?text=Hola,%20quiero%20reservar%20una%20sesión%20en%20YOS%20SALUT.%20Mi%20disponibilidad%20es:%20____" class="btn btn--whatsapp" target="_blank" rel="noopener">Reservar por WhatsApp</a>
         </div>
       </nav>
       <div class="header__actions">
-        <button class="btn btn--primary btn--sm" type="button" data-open-booking>Reservar online</button>
-        <a href="https://wa.me/34660385358?text=Hola,%20quiero%20reservar%20una%20sesión%20en%20YOS%20SALUT.%20Mi%20disponibilidad%20es:%20____" class="btn btn--whatsapp btn--sm" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://wa.me/34660385358?text=Hola,%20quiero%20reservar%20una%20sesión%20en%20YOS%20SALUT.%20Mi%20disponibilidad%20es:%20____" class="btn btn--whatsapp btn--sm" target="_blank" rel="noopener">Reservar</a>
       </div>
       <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav">
         <span class="menu-toggle__bar"></span><span class="menu-toggle__bar"></span><span class="menu-toggle__bar"></span>
@@ -188,9 +187,13 @@
           <p class="hero__subtitle">Descarga muscular, alivio de dolor y recuperación personalizada en un entorno profesional.</p>
           <p class="hero__schedule">Lunes a sábado · 15:00–21:00 · Cita previa</p>
           <div class="hero__actions">
-            <button class="btn btn--primary btn--xl btn-3d" type="button" data-open-booking>Reservar online</button>
             <a href="https://wa.me/34660385358?text=Hola,%20quiero%20reservar%20una%20sesión%20en%20YOS%20SALUT.%20Mi%20disponibilidad%20es:%20____" class="btn btn--whatsapp btn--xl btn-3d" target="_blank" rel="noopener">Reservar por WhatsApp</a>
-            <a href="#servicios" class="btn btn--outline-white btn--lg btn-3d">Ver servicios</a>
+            <a href="#servicios" class="hero__text-link">Ver servicios →</a>
+          </div>
+          <p class="hero__price">Desde 30€/sesión · Agenda limitada</p>
+          <div class="hero__proof">
+            <span>✓ +500 sesiones realizadas</span>
+            <span>✓ Respuesta en menos de 1h</span>
           </div>
         </div>
       </div>
@@ -255,7 +258,7 @@
 
         <article class="service-row" data-tilt>
           <div class="service-row__media">
-            <img src="assets/MASAJE DESCONTRACTURANTE.webp" alt="Masaje descontracturante" loading="lazy">
+            <img src="assets/masaje-descontracturante.webp" alt="Masaje descontracturante" loading="lazy">
           </div>
           <div class="service-row__content service-row__content--brand">
             <div class="service-row__head">
@@ -268,7 +271,7 @@
 
         <article class="service-row service-row--reverse" data-tilt>
           <div class="service-row__media">
-            <img src="assets/FOTO MASAJE RELAJANTE.jpg" alt="Masaje relajante" loading="lazy">
+            <img src="assets/masaje-relajante.jpg" alt="Masaje relajante" loading="lazy">
           </div>
           <div class="service-row__content service-row__content--light">
             <div class="service-row__head">
@@ -281,7 +284,7 @@
 
         <article class="service-row" data-tilt>
           <div class="service-row__media">
-            <img src="assets/foto buena drenaje.png" alt="Drenaje linfático" loading="lazy">
+            <img src="assets/drenaje-linfatico.png" alt="Drenaje linfático" loading="lazy">
           </div>
           <div class="service-row__content service-row__content--dark">
             <div class="service-row__head">
@@ -418,7 +421,7 @@
       <div class="container">
         <div class="about-layout">
           <div class="about__image">
-            <img src="assets/foto profesional.jpeg" alt="Yos, masajista profesional de YOS SALUT" loading="lazy">
+            <img src="assets/foto-profesional.jpeg" alt="Yos, masajista profesional de YOS SALUT" loading="lazy">
           </div>
           <div class="about__content">
             <span class="about__tag">Sobre mí</span>
@@ -667,6 +670,7 @@
             <div class="testimonial-card__author">
               <span class="testimonial-card__name">María G.</span>
               <span class="testimonial-card__service">Masaje terapéutico</span>
+              <span class="testimonial-card__date">Enero 2025</span>
             </div>
           </article>
           <article class="testimonial-card hover-lift-3d">
@@ -675,6 +679,7 @@
             <div class="testimonial-card__author">
               <span class="testimonial-card__name">Álex R.</span>
               <span class="testimonial-card__service">Masaje deportivo</span>
+              <span class="testimonial-card__date">Febrero 2025</span>
             </div>
           </article>
           <article class="testimonial-card hover-lift-3d">
@@ -683,6 +688,7 @@
             <div class="testimonial-card__author">
               <span class="testimonial-card__name">Laura P.</span>
               <span class="testimonial-card__service">Masaje relajante</span>
+              <span class="testimonial-card__date">Marzo 2025</span>
             </div>
           </article>
           <article class="testimonial-card hover-lift-3d">
@@ -691,6 +697,7 @@
             <div class="testimonial-card__author">
               <span class="testimonial-card__name">Carmen S.</span>
               <span class="testimonial-card__service">Drenaje linfático</span>
+              <span class="testimonial-card__date">Noviembre 2024</span>
             </div>
           </article>
           <article class="testimonial-card hover-lift-3d">
@@ -699,6 +706,7 @@
             <div class="testimonial-card__author">
               <span class="testimonial-card__name">David M.</span>
               <span class="testimonial-card__service">Masaje descontracturante</span>
+              <span class="testimonial-card__date">Diciembre 2024</span>
             </div>
           </article>
           <article class="testimonial-card hover-lift-3d">
@@ -707,6 +715,7 @@
             <div class="testimonial-card__author">
               <span class="testimonial-card__name">Sergio T.</span>
               <span class="testimonial-card__service">Bono regalo</span>
+              <span class="testimonial-card__date">Febrero 2025</span>
             </div>
           </article>
         </div>
@@ -752,6 +761,12 @@
         <div class="cta-section__actions">
           <a href="https://wa.me/34660385358?text=Hola,%20quiero%20reservar%20una%20sesión%20en%20YOS%20SALUT.%20Mi%20disponibilidad%20es:%20____" class="btn btn--whatsapp btn--xl btn-3d" target="_blank" rel="noopener">Reservar por WhatsApp</a>
         </div>
+        <div class="cta-section__proof">
+          <span>✓ +500 sesiones realizadas</span>
+          <span>✓ Respuesta en menos de 1 hora</span>
+          <span>✓ Sin compromiso</span>
+        </div>
+        <p class="cta-section__phone">También puedes llamarnos: <a href="tel:+34660385358">+34 660 38 53 58</a></p>
       </div>
     </section>
   </main>
@@ -776,11 +791,29 @@
     </div>
   </div>
 
-  <footer id="contacto" class="footer">
+  <footer class="footer">
     <div class="container">
       <div class="footer__grid">
-        <p> 2026 YOS SALUT · Vilanova del Camí</p>
-        <p>Instagram: @yossalut</p>
+        <div class="footer__col">
+          <p class="footer__brand">YOS SALUT</p>
+          <p>Masajista profesional en Vilanova del Camí, Barcelona.</p>
+          <p>Cerca de Igualada, Capellades y Santa Margarida de Montbui.</p>
+        </div>
+        <div class="footer__col">
+          <p><strong>Contacto</strong></p>
+          <p><a href="tel:+34660385358">+34 660 38 53 58</a></p>
+          <p><a href="https://wa.me/34660385358" target="_blank" rel="noopener">WhatsApp</a></p>
+          <p><a href="https://www.instagram.com/yossalut" target="_blank" rel="noopener">Instagram: @yossalut</a></p>
+        </div>
+        <div class="footer__col">
+          <p><strong>Horario</strong></p>
+          <p>Lunes a sábado</p>
+          <p>15:00 – 21:00</p>
+          <p>Con cita previa</p>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© 2026 YOS SALUT · Vilanova del Camí</p>
       </div>
     </div>
   </footer>
