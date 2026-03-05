@@ -21,8 +21,6 @@
     initRevealOnScroll();
     initBodyMap();
     initBookingModal();
-    initMagneticButtons();
-    initRipple();
     initCarousel();
     initScrollProgress();
     initAnimatedCounters();
@@ -499,54 +497,6 @@
   }
 
   /* ------------------------------------------------
-   * Magnetic CTA buttons (cursor attraction effect)
-   * ---------------------------------------------- */
-  function initMagneticButtons() {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    if ('ontouchstart' in window) return; // skip on touch devices
-
-    var magnets = document.querySelectorAll('.btn--whatsapp, .btn--primary, .header__actions .btn');
-    if (!magnets.length) return;
-
-    magnets.forEach(function (btn) {
-      btn.addEventListener('mousemove', function (e) {
-        var rect = btn.getBoundingClientRect();
-        var x = e.clientX - rect.left - rect.width / 2;
-        var y = e.clientY - rect.top - rect.height / 2;
-        btn.style.transform = 'translate(' + (x * 0.25).toFixed(1) + 'px, ' + (y * 0.25).toFixed(1) + 'px) scale(1.04)';
-      });
-
-      btn.addEventListener('mouseleave', function () {
-        btn.style.transform = '';
-      });
-    });
-  }
-
-  /* ------------------------------------------------
-   * Ripple effect on button click
-   * ---------------------------------------------- */
-  function initRipple() {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    document.addEventListener('click', function (e) {
-      var btn = e.target.closest('.btn');
-      if (!btn) return;
-
-      var ripple = document.createElement('span');
-      ripple.classList.add('ripple');
-      var rect = btn.getBoundingClientRect();
-      var size = Math.max(rect.width, rect.height);
-      ripple.style.width = ripple.style.height = size + 'px';
-      ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
-      ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
-      btn.appendChild(ripple);
-
-      ripple.addEventListener('animationend', function () {
-        ripple.remove();
-      });
-    });
-  }
-  /* ------------------------------------------------
    * Scroll progress bar
    * ---------------------------------------------- */
   function initScrollProgress() {
@@ -623,32 +573,6 @@
 
     if (acceptBtn) acceptBtn.addEventListener('click', function () { closeBanner(true); });
     if (rejectBtn) rejectBtn.addEventListener('click', function () { closeBanner(false); });
-  }
-
-  /* ------------------------------------------------
-   * Custom cursor (desktop only)
-   * ---------------------------------------------- */
-  function initCustomCursor() {
-    if ('ontouchstart' in window) return;
-    if (window.matchMedia('(hover: none)').matches) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    var dot = document.getElementById('cursor-dot');
-    if (!dot) return;
-
-    var mouseX = 0, mouseY = 0;
-
-    document.addEventListener('mousemove', function (e) {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      dot.style.transform = 'translate(' + mouseX + 'px,' + mouseY + 'px)';
-    });
-
-    var hoverTargets = document.querySelectorAll('a, button, .btn, .faq__question, .body-zone, .carousel__arrow');
-    hoverTargets.forEach(function (el) {
-      el.addEventListener('mouseenter', function () { dot.classList.add('is-hovering'); });
-      el.addEventListener('mouseleave', function () { dot.classList.remove('is-hovering'); });
-    });
   }
 
   /* ------------------------------------------------

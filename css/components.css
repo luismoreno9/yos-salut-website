@@ -823,6 +823,11 @@
   transition: transform var(--transition-slow), filter var(--transition-slow);
 }
 
+.service-row__media img.img-crop-watermark {
+  height: 125%;
+  object-position: center 15%;
+}
+
 .service-row:hover .service-row__media img {
   transform: scale(1.04);
   filter: saturate(1.05);
@@ -2237,25 +2242,6 @@
    PREMIUM MICROINTERACTIONS
    ================================================================ */
 
-/* Ripple effect on button click */
-.btn {
-  position: relative;
-  overflow: hidden;
-}
-
-.ripple {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(255,255,255,.35);
-  transform: scale(0);
-  animation: ripple-expand .6s ease-out;
-  pointer-events: none;
-}
-
-@keyframes ripple-expand {
-  to { transform: scale(2.5); opacity: 0; }
-}
-
 /* Premium hover lift on cards */
 .service-row,
 .pricing-card,
@@ -2277,15 +2263,6 @@
 .schedule-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 28px rgba(39,76,119,.1);
-}
-
-/* Magnetic button smooth return */
-.btn--whatsapp,
-.btn--primary,
-.header__actions .btn {
-  transition: transform .25s cubic-bezier(.4,0,.2,1),
-              background-color var(--transition-fast),
-              box-shadow var(--transition-fast);
 }
 
 /* ================================================================
@@ -2553,38 +2530,6 @@
     flex-direction: column;
     text-align: center;
     padding: var(--space-md);
-  }
-}
-
-/* ================================================================
-   CUSTOM CURSOR
-   ================================================================ */
-.cursor-dot {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 8px;
-  height: 8px;
-  background: var(--color-primary);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 99998;
-  transition: width .2s ease, height .2s ease, margin .2s ease, opacity .2s ease;
-  mix-blend-mode: difference;
-}
-
-.cursor-dot.is-hovering {
-  width: 40px;
-  height: 40px;
-  margin-left: -16px;
-  margin-top: -16px;
-  background: rgba(39,76,119,.15);
-  mix-blend-mode: normal;
-}
-
-@media (hover: none), (max-width: 768px) {
-  .cursor-dot {
-    display: none;
   }
 }
 
