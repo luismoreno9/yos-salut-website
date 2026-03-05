@@ -21,6 +21,10 @@
     initRevealOnScroll();
     initBodyMap();
     initBookingModal();
+    initMagneticButtons();
+    initRipple();
+    initMethodScrollTelling();
+    initCarousel();
   }
 
   /* ------------------------------------------------
@@ -70,22 +74,45 @@
   }
 
   /* ------------------------------------------------
-   * Header: añadir clase al hacer scroll
+   * Smart Navbar: transparent → solid, hide ↓ show ↑
    * ---------------------------------------------- */
   function initHeaderScroll() {
     const header = document.querySelector('.header');
     if (!header) return;
 
+    var lastY = 0;
     var ticking = false;
+    var delta = 5;
+
     window.addEventListener('scroll', function () {
       if (!ticking) {
         window.requestAnimationFrame(function () {
-          header.classList.toggle('header--scrolled', window.scrollY > 50);
+          var y = window.scrollY;
+
+          // Transparent → Solid
+          header.classList.toggle('header--scrolled', y > 50);
+
+          // Transparent over hero (no background when at top)
+          header.classList.toggle('header--top', y <= 50);
+
+          // Hide on scroll down, show on scroll up
+          if (Math.abs(y - lastY) > delta) {
+            if (y > lastY && y > 120) {
+              header.classList.add('header--hidden');
+            } else {
+              header.classList.remove('header--hidden');
+            }
+            lastY = y;
+          }
+
           ticking = false;
         });
         ticking = true;
       }
     });
+
+    // Set initial state
+    header.classList.toggle('header--top', window.scrollY <= 50);
   }
 
   /* ------------------------------------------------
@@ -326,6 +353,194 @@
     window.addEventListener('keydown', function (e) {
       if (modal.hidden) return;
       if (e.key === 'Escape') closeModal();
+    });
+  }
+
+  /* ------------------------------------------------
+   * Premium testimonial carousel (drag + arrows + dots)
+   * ---------------------------------------------- */
+  function initCarousel() {
+    var el = document.getElementById('testimonial-carousel');
+    if (!el) return;
+
+    var track = el.querySelector('.carousel__track');
+    var slides = el.querySelectorAll('.carousel__slide');
+    var prevBtn = el.querySelector('.carousel__arrow--prev');
+    var nextBtn = el.querySelector('.carousel__arrow--next');
+    var dotsWrap = el.querySelector('.carousel__dots');
+    if (!track || !slides.length) return;
+
+    var current = 0;
+    var perView = getPerView();
+    var total = slides.length;
+    var maxIndex = Math.max(0, total - perView);
+
+    // Build dots
+    function buildDots() {
+      dotsWrap.innerHTML = '';
+      for (var i = 0; i <= maxIndex; i++) {
+        var dot = document.createElement('button');
+        dot.className = 'carousel__dot' + (i === current ? ' carousel__dot--active' : '');
+        dot.setAttribute('aria-label', 'Ir a reseña ' + (i + 1));
+        dot.dataset.index = i;
+        dot.addEventListener('click', function () { goTo(+this.dataset.index); });
+        dotsWrap.appendChild(dot);
+      }
+    }
+
+    function getPerView() {
+      if (window.innerWidth <= 640) return 1;
+      if (window.innerWidth <= 1024) return 2;
+      return 3;
+    }
+
+    function goTo(index) {
+      current = Math.max(0, Math.min(index, maxIndex));
+      var slideWidth = slides[0].offsetWidth + parseInt(getComputedStyle(track).gap || 24);
+      track.style.transform = 'translateX(-' + (current * slideWidth) + 'px)';
+      updateDots();
+    }
+
+    function updateDots() {
+      dotsWrap.querySelectorAll('.carousel__dot').forEach(function (d, i) {
+        d.classList.toggle('carousel__dot--active', i === current);
+      });
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', function () { goTo(current - 1); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { goTo(current + 1); });
+
+    // Touch / drag support
+    var startX = 0, moveX = 0, isDragging = false;
+
+    track.addEventListener('pointerdown', function (e) {
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      isDragging = true;
+      startX = e.clientX;
+      moveX = 0;
+      track.classList.add('is-dragging');
+      track.setPointerCapture(e.pointerId);
+    });
+
+    track.addEventListener('pointermove', function (e) {
+      if (!isDragging) return;
+      moveX = e.clientX - startX;
+      var slideWidth = slides[0].offsetWidth + parseInt(getComputedStyle(track).gap || 24);
+      var base = current * slideWidth;
+      track.style.transform = 'translateX(' + (-base + moveX) + 'px)';
+    });
+
+    track.addEventListener('pointerup', function () {
+      if (!isDragging) return;
+      isDragging = false;
+      track.classList.remove('is-dragging');
+      if (moveX < -50) goTo(current + 1);
+      else if (moveX > 50) goTo(current - 1);
+      else goTo(current);
+    });
+
+    // Recalc on resize
+    window.addEventListener('resize', function () {
+      perView = getPerView();
+      maxIndex = Math.max(0, total - perView);
+      current = Math.min(current, maxIndex);
+      buildDots();
+      goTo(current);
+    });
+
+    // Auto-play (pause on hover)
+    var autoTimer = setInterval(function () {
+      goTo(current >= maxIndex ? 0 : current + 1);
+    }, 5000);
+
+    el.addEventListener('pointerenter', function () { clearInterval(autoTimer); });
+    el.addEventListener('pointerleave', function () {
+      autoTimer = setInterval(function () {
+        goTo(current >= maxIndex ? 0 : current + 1);
+      }, 5000);
+    });
+
+    buildDots();
+    goTo(0);
+  }
+
+  /* ------------------------------------------------
+   * Scroll-telling: Mi método (swap steps on scroll)
+   * ---------------------------------------------- */
+  function initMethodScrollTelling() {
+    var steps = document.querySelectorAll('.method__step');
+    var visuals = document.querySelectorAll('.method__visual');
+    if (!steps.length || !visuals.length) return;
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+
+        var stepNum = entry.target.getAttribute('data-step');
+
+        // Activate the matching step
+        steps.forEach(function (s) {
+          s.classList.toggle('method__step--active', s.getAttribute('data-step') === stepNum);
+        });
+
+        // Swap the visual
+        visuals.forEach(function (v) {
+          v.classList.toggle('method__visual--active', v.getAttribute('data-step') === stepNum);
+        });
+      });
+    }, { threshold: 0.6, rootMargin: '-20% 0px -20% 0px' });
+
+    steps.forEach(function (step) {
+      observer.observe(step);
+    });
+  }
+
+  /* ------------------------------------------------
+   * Magnetic CTA buttons (cursor attraction effect)
+   * ---------------------------------------------- */
+  function initMagneticButtons() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if ('ontouchstart' in window) return; // skip on touch devices
+
+    var magnets = document.querySelectorAll('.btn--whatsapp, .btn--primary, .header__actions .btn');
+    if (!magnets.length) return;
+
+    magnets.forEach(function (btn) {
+      btn.addEventListener('mousemove', function (e) {
+        var rect = btn.getBoundingClientRect();
+        var x = e.clientX - rect.left - rect.width / 2;
+        var y = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = 'translate(' + (x * 0.25).toFixed(1) + 'px, ' + (y * 0.25).toFixed(1) + 'px) scale(1.04)';
+      });
+
+      btn.addEventListener('mouseleave', function () {
+        btn.style.transform = '';
+      });
+    });
+  }
+
+  /* ------------------------------------------------
+   * Ripple effect on button click
+   * ---------------------------------------------- */
+  function initRipple() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('.btn');
+      if (!btn) return;
+
+      var ripple = document.createElement('span');
+      ripple.classList.add('ripple');
+      var rect = btn.getBoundingClientRect();
+      var size = Math.max(rect.width, rect.height);
+      ripple.style.width = ripple.style.height = size + 'px';
+      ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+      ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+      btn.appendChild(ripple);
+
+      ripple.addEventListener('animationend', function () {
+        ripple.remove();
+      });
     });
   }
 })();

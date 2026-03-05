@@ -36,10 +36,10 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap">
 
   <!-- Estilos -->
-  <link rel="stylesheet" href="css/base.css?v=3">
-  <link rel="stylesheet" href="css/layout.css?v=3">
-  <link rel="stylesheet" href="css/components.css?v=3">
-  <link rel="stylesheet" href="css/utilities.css?v=3">
+  <link rel="stylesheet" href="css/base.css?v=4">
+  <link rel="stylesheet" href="css/layout.css?v=4">
+  <link rel="stylesheet" href="css/components.css?v=4">
+  <link rel="stylesheet" href="css/utilities.css?v=4">
 
   <!-- Schema.org: LocalBusiness -->
   <script type="application/ld+json">
@@ -448,6 +448,54 @@
       </div>
     </section>
 
+    <!-- ============ MI MÉTODO (scroll-telling sticky) ============ -->
+    <section class="section method-section">
+      <div class="container">
+        <div class="section__header">
+          <h2 class="section__title"><span class="text-glow">Mi método de trabajo</span></h2>
+          <p class="section__subtitle">Cada sesión sigue un proceso pensado para ofrecerte el mejor resultado.</p>
+        </div>
+        <div class="method">
+          <div class="method__media">
+            <div class="method__visual method__visual--active" data-step="1">
+              <div class="method__icon">🎯</div>
+              <span class="method__step-label">Paso 1 de 4</span>
+            </div>
+            <div class="method__visual" data-step="2">
+              <div class="method__icon">🤲</div>
+              <span class="method__step-label">Paso 2 de 4</span>
+            </div>
+            <div class="method__visual" data-step="3">
+              <div class="method__icon">💆</div>
+              <span class="method__step-label">Paso 3 de 4</span>
+            </div>
+            <div class="method__visual" data-step="4">
+              <div class="method__icon">✅</div>
+              <span class="method__step-label">Paso 4 de 4</span>
+            </div>
+          </div>
+          <div class="method__steps">
+            <div class="method__step method__step--active" data-step="1">
+              <h3>Escucha y valoración</h3>
+              <p>Antes de tocar, escucho. Hablamos sobre qué te duele, tu día a día y tu historial. Así puedo entender la raíz del problema, no solo el síntoma.</p>
+            </div>
+            <div class="method__step" data-step="2">
+              <h3>Exploración manual</h3>
+              <p>Palpo la zona para identificar contracturas, puntos gatillo y restricciones de movimiento. Esto me permite diseñar la sesión a medida para ti.</p>
+            </div>
+            <div class="method__step" data-step="3">
+              <h3>Tratamiento adaptado</h3>
+              <p>Combino técnicas según lo que necesitas: presión profunda, amasamientos, estiramientos, drenaje... Ajusto la intensidad en tiempo real.</p>
+            </div>
+            <div class="method__step" data-step="4">
+              <h3>Consejos y seguimiento</h3>
+              <p>Al terminar, te doy recomendaciones personalizadas: estiramientos, hábitos posturales y frecuencia de sesiones sugerida para mantener los resultados.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="zonas" class="section section--surface">
       <div class="container">
         <div class="section__header">
@@ -656,68 +704,79 @@
       </div>
     </section>
 
-    <!-- ============ TESTIMONIOS ============ -->
+    <!-- ============ TESTIMONIOS (carousel premium) ============ -->
     <section id="testimonios" class="section">
       <div class="container">
         <div class="section__header">
           <h2 class="section__title"><span class="text-glow">Lo que dicen nuestros clientes</span></h2>
           <p class="section__subtitle">Opiniones reales de personas que han confiado en YOS SALUT.</p>
+          <div class="trust-badge">
+            <svg width="20" height="20" viewBox="0 0 48 48" fill="none"><path d="M44 24c0-1.7-.5-3.3-1.3-4.6.5-1.7.4-3.5-.4-5.1-.8-1.6-2.2-2.8-3.8-3.4-.3-1.7-1.2-3.3-2.6-4.4-1.4-1.1-3.1-1.7-4.8-1.5-1.1-1.3-2.6-2.3-4.3-2.7-1.7-.4-3.4-.1-4.9.7C20.5 1.8 18.9 1 17.1 1c-1.7 0-3.4.6-4.7 1.7-1.5-.7-3.2-1-4.8-.5s-3 1.5-3.9 2.9C2.3 5.5 1.2 6.7.6 8.2c-.6 1.5-.6 3.2 0 4.7C.2 14.3 0 15.9 0 17.5v.1c0 1.6.4 3.2 1.2 4.5-.7 1.8-.8 3.7-.1 5.5.7 1.7 2 3 3.6 3.7.2 1.8 1.1 3.4 2.5 4.6 1.4 1.2 3.2 1.8 5 1.7 1 1.4 2.5 2.4 4.2 2.9 1.7.5 3.5.3 5.1-.5 1.4 1.1 3 1.7 4.8 1.8h.4c1.6 0 3.1-.5 4.4-1.5 1.6.7 3.3.8 5 .3 1.6-.5 3-1.6 3.9-3 1.5-.3 2.8-1 3.8-2.2 1-1.1 1.6-2.5 1.7-4 1.3-1 2.3-2.5 2.7-4.1.5-1.7.3-3.4-.4-5" fill="#4285F4"/><path d="M21.6 31.3l-7.8-7.8 2.8-2.8 5 5L33.4 14l2.8 2.8-14.6 14.5z" fill="#fff"/></svg>
+            <span><strong>5.0</strong> — 6 reseñas verificadas</span>
+          </div>
         </div>
-        <div class="testimonials-grid">
-          <article class="testimonial-card hover-lift-3d">
-            <div class="testimonial-card__stars">★★★★★</div>
-            <blockquote class="testimonial-card__text">"Llevaba semanas con dolor lumbar y después de dos sesiones noté una mejora increíble. Yos es muy profesional y te explica todo lo que hace. Totalmente recomendable."</blockquote>
-            <div class="testimonial-card__author">
-              <span class="testimonial-card__name">María G.</span>
-              <span class="testimonial-card__service">Masaje terapéutico</span>
-              <span class="testimonial-card__date">Enero 2025</span>
-            </div>
-          </article>
-          <article class="testimonial-card hover-lift-3d">
-            <div class="testimonial-card__stars">★★★★★</div>
-            <blockquote class="testimonial-card__text">"Voy cada 15 días después de entrenar y la diferencia se nota muchísimo. La descarga muscular es brutal, salgo como nuevo. El mejor masajista de la zona."</blockquote>
-            <div class="testimonial-card__author">
-              <span class="testimonial-card__name">Álex R.</span>
-              <span class="testimonial-card__service">Masaje deportivo</span>
-              <span class="testimonial-card__date">Febrero 2025</span>
-            </div>
-          </article>
-          <article class="testimonial-card hover-lift-3d">
-            <div class="testimonial-card__stars">★★★★★</div>
-            <blockquote class="testimonial-card__text">"Fui por primera vez sin saber qué esperar y me encantó. Te hace sentir muy cómoda, el ambiente es tranquilo y sales super relajada. Ya he repetido tres veces."</blockquote>
-            <div class="testimonial-card__author">
-              <span class="testimonial-card__name">Laura P.</span>
-              <span class="testimonial-card__service">Masaje relajante</span>
-              <span class="testimonial-card__date">Marzo 2025</span>
-            </div>
-          </article>
-          <article class="testimonial-card hover-lift-3d">
-            <div class="testimonial-card__stars">★★★★★</div>
-            <blockquote class="testimonial-card__text">"Tenía las piernas muy hinchadas por retención de líquidos y con el drenaje linfático mejoré bastante. Además te da consejos para mantener el efecto en casa."</blockquote>
-            <div class="testimonial-card__author">
-              <span class="testimonial-card__name">Carmen S.</span>
-              <span class="testimonial-card__service">Drenaje linfático</span>
-              <span class="testimonial-card__date">Noviembre 2024</span>
-            </div>
-          </article>
-          <article class="testimonial-card hover-lift-3d">
-            <div class="testimonial-card__stars">★★★★★</div>
-            <blockquote class="testimonial-card__text">"Trabajo todo el día sentado y tenía contracturas terribles en cuello y hombros. Yos encontró el punto exacto del problema. Ahora vengo una vez al mes como mantenimiento."</blockquote>
-            <div class="testimonial-card__author">
-              <span class="testimonial-card__name">David M.</span>
-              <span class="testimonial-card__service">Masaje descontracturante</span>
-              <span class="testimonial-card__date">Diciembre 2024</span>
-            </div>
-          </article>
-          <article class="testimonial-card hover-lift-3d">
-            <div class="testimonial-card__stars">★★★★★</div>
-            <blockquote class="testimonial-card__text">"Le regalé un bono de 3 sesiones a mi madre y está encantada. Dice que es lo mejor que le han regalado en mucho tiempo. Gracias Yos por el trato tan cercano."</blockquote>
-            <div class="testimonial-card__author">
-              <span class="testimonial-card__name">Sergio T.</span>
-              <span class="testimonial-card__service">Bono regalo</span>
-              <span class="testimonial-card__date">Febrero 2025</span>
-            </div>
-          </article>
+        <div class="carousel" id="testimonial-carousel">
+          <div class="carousel__track">
+            <article class="testimonial-card carousel__slide">
+              <div class="testimonial-card__stars">★★★★★</div>
+              <blockquote class="testimonial-card__text">"Llevaba semanas con dolor lumbar y después de dos sesiones noté una mejora increíble. Yos es muy profesional y te explica todo lo que hace. Totalmente recomendable."</blockquote>
+              <div class="testimonial-card__author">
+                <span class="testimonial-card__name">María G.</span>
+                <span class="testimonial-card__service">Masaje terapéutico</span>
+                <span class="testimonial-card__date">Enero 2025</span>
+              </div>
+            </article>
+            <article class="testimonial-card carousel__slide">
+              <div class="testimonial-card__stars">★★★★★</div>
+              <blockquote class="testimonial-card__text">"Voy cada 15 días después de entrenar y la diferencia se nota muchísimo. La descarga muscular es brutal, salgo como nuevo. El mejor masajista de la zona."</blockquote>
+              <div class="testimonial-card__author">
+                <span class="testimonial-card__name">Álex R.</span>
+                <span class="testimonial-card__service">Masaje deportivo</span>
+                <span class="testimonial-card__date">Febrero 2025</span>
+              </div>
+            </article>
+            <article class="testimonial-card carousel__slide">
+              <div class="testimonial-card__stars">★★★★★</div>
+              <blockquote class="testimonial-card__text">"Fui por primera vez sin saber qué esperar y me encantó. Te hace sentir muy cómoda, el ambiente es tranquilo y sales super relajada. Ya he repetido tres veces."</blockquote>
+              <div class="testimonial-card__author">
+                <span class="testimonial-card__name">Laura P.</span>
+                <span class="testimonial-card__service">Masaje relajante</span>
+                <span class="testimonial-card__date">Marzo 2025</span>
+              </div>
+            </article>
+            <article class="testimonial-card carousel__slide">
+              <div class="testimonial-card__stars">★★★★★</div>
+              <blockquote class="testimonial-card__text">"Tenía las piernas muy hinchadas por retención de líquidos y con el drenaje linfático mejoré bastante. Además te da consejos para mantener el efecto en casa."</blockquote>
+              <div class="testimonial-card__author">
+                <span class="testimonial-card__name">Carmen S.</span>
+                <span class="testimonial-card__service">Drenaje linfático</span>
+                <span class="testimonial-card__date">Noviembre 2024</span>
+              </div>
+            </article>
+            <article class="testimonial-card carousel__slide">
+              <div class="testimonial-card__stars">★★★★★</div>
+              <blockquote class="testimonial-card__text">"Trabajo todo el día sentado y tenía contracturas terribles en cuello y hombros. Yos encontró el punto exacto del problema. Ahora vengo una vez al mes como mantenimiento."</blockquote>
+              <div class="testimonial-card__author">
+                <span class="testimonial-card__name">David M.</span>
+                <span class="testimonial-card__service">Masaje descontracturante</span>
+                <span class="testimonial-card__date">Diciembre 2024</span>
+              </div>
+            </article>
+            <article class="testimonial-card carousel__slide">
+              <div class="testimonial-card__stars">★★★★★</div>
+              <blockquote class="testimonial-card__text">"Le regalé un bono de 3 sesiones a mi madre y está encantada. Dice que es lo mejor que le han regalado en mucho tiempo. Gracias Yos por el trato tan cercano."</blockquote>
+              <div class="testimonial-card__author">
+                <span class="testimonial-card__name">Sergio T.</span>
+                <span class="testimonial-card__service">Bono regalo</span>
+                <span class="testimonial-card__date">Febrero 2025</span>
+              </div>
+            </article>
+          </div>
+          <div class="carousel__nav">
+            <button class="carousel__arrow carousel__arrow--prev" aria-label="Anterior">‹</button>
+            <div class="carousel__dots"></div>
+            <button class="carousel__arrow carousel__arrow--next" aria-label="Siguiente">›</button>
+          </div>
         </div>
       </div>
     </section>
