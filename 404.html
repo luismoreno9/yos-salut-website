@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página no encontrada — YOS SALUT</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="css/base.css?v=5">
+  <link rel="stylesheet" href="css/layout.css?v=5">
+  <link rel="stylesheet" href="css/components.css?v=5">
+  <style>
+    .error-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--space-2xl);
+    }
+    .error-page__code {
+      font-family: var(--ff-heading);
+      font-size: clamp(5rem, 15vw, 10rem);
+      font-weight: 800;
+      color: var(--color-primary);
+      line-height: 1;
+      opacity: .15;
+    }
+    .error-page__title {
+      font-family: var(--ff-heading);
+      font-size: var(--fs-2xl);
+      margin-top: var(--space-md);
+      color: var(--color-text);
+    }
+    .error-page__text {
+      color: var(--color-text-light);
+      margin-top: var(--space-sm);
+      max-width: 420px;
+    }
+    .error-page__actions {
+      margin-top: var(--space-xl);
+      display: flex;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="error-page">
+    <div class="error-page__code">404</div>
+    <h1 class="error-page__title">Página no encontrada</h1>
+    <p class="error-page__text">La página que buscas no existe o ha sido movida. Vuelve al inicio o contacta con nosotros.</p>
+    <div class="error-page__actions">
+      <a href="index.html" class="btn btn--primary">Ir al inicio</a>
+      <a href="https://wa.me/34660385358" class="btn btn--whatsapp" target="_blank" rel="noopener">Contactar por WhatsApp</a>
+    </div>
+  </div>
+</body>
+</html>

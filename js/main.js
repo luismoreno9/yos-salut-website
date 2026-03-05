@@ -23,8 +23,12 @@
     initBookingModal();
     initMagneticButtons();
     initRipple();
-    initMethodScrollTelling();
     initCarousel();
+    initScrollProgress();
+    initAnimatedCounters();
+    initCookieBanner();
+    initCustomCursor();
+    initPreloader();
   }
 
   /* ------------------------------------------------
@@ -543,4 +547,123 @@
       });
     });
   }
+  /* ------------------------------------------------
+   * Scroll progress bar
+   * ---------------------------------------------- */
+  function initScrollProgress() {
+    var bar = document.getElementById('scroll-progress');
+    if (!bar) return;
+
+    window.addEventListener('scroll', function () {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      var progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      bar.style.width = progress + '%';
+    }, { passive: true });
+  }
+
+  /* ------------------------------------------------
+   * Animated counters (count up on scroll into view)
+   * ---------------------------------------------- */
+  function initAnimatedCounters() {
+    var counters = document.querySelectorAll('.counter');
+    if (!counters.length || !('IntersectionObserver' in window)) return;
+
+    function animateCounter(el) {
+      var numEl = el.querySelector('.counter__number');
+      var target = parseFloat(el.dataset.target) || 0;
+      var decimals = parseInt(el.dataset.decimals) || 0;
+      var suffix = el.dataset.suffix || '';
+      var prefix = el.dataset.prefix || '';
+      var duration = 2000;
+      var start = performance.now();
+
+      function step(now) {
+        var elapsed = now - start;
+        var progress = Math.min(elapsed / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        var value = eased * target;
+        numEl.textContent = prefix + value.toFixed(decimals) + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+      }
+
+      requestAnimationFrame(step);
+    }
+
+    var observer = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        animateCounter(entry.target);
+        obs.unobserve(entry.target);
+      });
+    }, { threshold: 0.3 });
+
+    counters.forEach(function (c) { observer.observe(c); });
+  }
+
+  /* ------------------------------------------------
+   * Cookie consent banner
+   * ---------------------------------------------- */
+  function initCookieBanner() {
+    var banner = document.getElementById('cookie-banner');
+    var acceptBtn = document.getElementById('cookie-accept');
+    var rejectBtn = document.getElementById('cookie-reject');
+    if (!banner) return;
+
+    if (localStorage.getItem('yos_cookies')) return;
+
+    setTimeout(function () {
+      banner.classList.add('is-visible');
+    }, 1500);
+
+    function closeBanner(accepted) {
+      localStorage.setItem('yos_cookies', accepted ? 'accepted' : 'rejected');
+      banner.classList.remove('is-visible');
+      banner.classList.add('is-hidden');
+    }
+
+    if (acceptBtn) acceptBtn.addEventListener('click', function () { closeBanner(true); });
+    if (rejectBtn) rejectBtn.addEventListener('click', function () { closeBanner(false); });
+  }
+
+  /* ------------------------------------------------
+   * Custom cursor (desktop only)
+   * ---------------------------------------------- */
+  function initCustomCursor() {
+    if ('ontouchstart' in window) return;
+    if (window.matchMedia('(hover: none)').matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var dot = document.getElementById('cursor-dot');
+    if (!dot) return;
+
+    var mouseX = 0, mouseY = 0;
+
+    document.addEventListener('mousemove', function (e) {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      dot.style.transform = 'translate(' + mouseX + 'px,' + mouseY + 'px)';
+    });
+
+    var hoverTargets = document.querySelectorAll('a, button, .btn, .faq__question, .body-zone, .carousel__arrow');
+    hoverTargets.forEach(function (el) {
+      el.addEventListener('mouseenter', function () { dot.classList.add('is-hovering'); });
+      el.addEventListener('mouseleave', function () { dot.classList.remove('is-hovering'); });
+    });
+  }
+
+  /* ------------------------------------------------
+   * Preloader (hide after page load)
+   * ---------------------------------------------- */
+  function initPreloader() {
+    var preloader = document.getElementById('preloader');
+    if (!preloader) return;
+
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        preloader.classList.add('is-hidden');
+      }, 1400);
+    });
+  }
+
 })();
