@@ -27,7 +27,6 @@
     initScrollProgress();
     initAnimatedCounters();
     initCookieBanner();
-    initCustomCursor();
     initPreloader();
   }
 
